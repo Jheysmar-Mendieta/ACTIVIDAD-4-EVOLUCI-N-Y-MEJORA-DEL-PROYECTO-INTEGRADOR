@@ -41,21 +41,21 @@ Feedback de Audio (Web Audio API)
 
 Estructura del Proyecto
 proyecto/
-├── calculadora/
+├── calculadora2/
 │   ├── index.html
 │   ├── css/
 │   │   └── calculadora.css
 │   └── js/
 │       └── script.js
-├── calendario/
+├── calendario2/
 │   ├── index.html
 │   ├── css/
 │   │   └── style.css
 │   └── js/
 │       └── script.js
-├── README.md
 ├── .gitignore
-└── LICENSE
+├── LICENSE
+└── README.md
 
 Instalación y Uso
 No requiere dependencias ni servidor. Basta con abrir el archivo `index.html` de cada carpeta en cualquier navegador moderno.
@@ -66,11 +66,13 @@ git clone https://github.com/Jheysmar-Mendieta/ACTIVIDAD-4-EVOLUCI-N-Y-MEJORA-DE
 
 Abrir cualquiera de los proyectos
 
-cd proyecto-integrador/calculadora2
-Abrir index.html en el navegador
+cd ACTIVIDAD-4-EVOLUCI-N-Y-MEJORA-DEL-PROYECTO-INTEGRADOR/calculadora2
+Abrir la terminal y poner "python -m http.server"
+Poner en el navegador "http://localhost:8000/calculadora2/"
 
-cd ../calendario2
-Abrir index.html en el navegador
+cd ACTIVIDAD-4-EVOLUCI-N-Y-MEJORA-DEL-PROYECTO-INTEGRADOR/calendario2
+Abrir la terminal y poner "python -m http.server"
+Poner en el navegador "http://localhost:8000/calendario2/"
 
 Feriados Nacionales 2026 (Argentina)
 

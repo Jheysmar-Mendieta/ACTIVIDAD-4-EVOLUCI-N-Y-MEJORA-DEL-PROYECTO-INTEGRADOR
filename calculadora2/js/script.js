@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", () => {
+
 const ctx = new (window.AudioContext || window.webkitAudioContext)();
 
 function beep(freq = 440, dur = 0.08, type = "sine", vol = 0.2) {
@@ -32,9 +34,11 @@ const bienvenida   = document.getElementById("bienvenida");
 
 function cargarNombre() {
     const nombre = localStorage.getItem("calc_nombre");
+
     if (!nombre) {
         modalOverlay.classList.remove("oculto");
     } else {
+        modalOverlay.classList.add("oculto");
         mostrarBienvenida(nombre);
     }
 }
@@ -48,13 +52,16 @@ function mostrarBienvenida(nombre) {
 btnGuardar.addEventListener("click", () => {
     const nombre = inputNombre.value.trim();
     if (!nombre) return;
+
     localStorage.setItem("calc_nombre", nombre);
     modalOverlay.classList.add("oculto");
     mostrarBienvenida(nombre);
     sonidoIgual();
 });
 
-inputNombre.addEventListener("keydown", e => { if (e.key === "Enter") btnGuardar.click(); });
+inputNombre.addEventListener("keydown", e => { 
+    if (e.key === "Enter") btnGuardar.click(); 
+});
 
 const toggle    = document.getElementById("mode-toggle");
 const modeLabel = document.getElementById("mode-label");
@@ -62,6 +69,7 @@ const modeLabel = document.getElementById("mode-label");
 function aplicarModo(infantil) {
     document.body.classList.toggle("modo-infantil", infantil);
     modeLabel.textContent = infantil ? "👔 Modo Adulto" : "👔 Modo Adulto";
+
     if (infantil) {
         document.getElementById("titulo-app").textContent = "🧮 ¡Calculadora!";
         feedback.textContent = "";
@@ -85,7 +93,10 @@ if (modoGuardado === "infantil") {
 
 function mostrarFeedback(tipo) {
     const modoInfantil = toggle.checked;
-    if (!modoInfantil) { feedback.textContent = ""; return; }
+    if (!modoInfantil) { 
+        feedback.textContent = ""; 
+        return; 
+    }
 
     if (tipo === "ok") {
         const frutas = ["🍎","🍊","🍋","🍇","🍓","🍉","🥝","🍑","🍍","🥭"];
@@ -103,6 +114,7 @@ function animarResultado() {
     void pantalla.offsetWidth;
     pantalla.classList.add("pop");
 }
+
 function animarError() {
     pantalla.classList.remove("shake");
     void pantalla.offsetWidth;
@@ -117,18 +129,21 @@ function agregarNumero(num) {
         pantalla.textContent += num;
         operacion += num;
     }
+
     expresion.textContent = operacion;
     sonidoNum();
 }
 
 function agregarOperador(op) {
     const ultimo = operacion.slice(-1);
+
     if (["+","-","*","/"].includes(ultimo)) {
         operacion = operacion.slice(0, -1) + op;
         pantalla.textContent = pantalla.textContent.slice(0, -1) + op;
         expresion.textContent = operacion;
         return;
     }
+
     pantalla.textContent += op === "*" ? "×" : op === "/" ? "÷" : op;
     operacion += op;
     expresion.textContent = operacion;
@@ -137,7 +152,9 @@ function agregarOperador(op) {
 
 function agregarPunto() {
     const partes = operacion.split(/[\+\-\*\/]/);
+
     if (partes[partes.length - 1].includes(".")) return;
+
     pantalla.textContent += ".";
     operacion += ".";
     expresion.textContent = operacion;
@@ -146,19 +163,24 @@ function agregarPunto() {
 
 function calcular() {
     if (!operacion) return;
+
     try {
         const res = Function('"use strict"; return (' + operacion + ')')();
         expresion.textContent = operacion + " =";
+
         const resStr = parseFloat(res.toFixed(10)).toString();
         pantalla.textContent = resStr;
         operacion = resStr;
+
         animarResultado();
         sonidoIgual();
         mostrarFeedback("ok");
+
     } catch {
         pantalla.textContent = "Error";
         expresion.textContent = "";
         operacion = "";
+
         animarError();
         sonidoError();
         mostrarFeedback("error");
@@ -169,12 +191,17 @@ function limpiar() {
     operacion = "";
     pantalla.textContent = "0";
     expresion.textContent = "";
+
     sonidoClear();
     mostrarFeedback("clear");
 }
 
 function borrarUltimo() {
-    if (pantalla.textContent === "Error") { limpiar(); return; }
+    if (pantalla.textContent === "Error") { 
+        limpiar(); 
+        return; 
+    }
+
     if (operacion.length > 1) {
         operacion = operacion.slice(0, -1);
         let display = pantalla.textContent.slice(0, -1);
@@ -185,11 +212,13 @@ function borrarUltimo() {
         operacion = "";
         expresion.textContent = "";
     }
+
     sonidoNum();
 }
 
 document.querySelectorAll(".botones button").forEach(boton => {
     boton.addEventListener("click", () => {
+
         if (ctx.state === "suspended") ctx.resume();
 
         const accion = boton.dataset.action;
@@ -205,13 +234,25 @@ document.querySelectorAll(".botones button").forEach(boton => {
 });
 
 document.addEventListener("keydown", e => {
+
     if (ctx.state === "suspended") ctx.resume();
+
     if ("0123456789".includes(e.key)) agregarNumero(e.key);
-    if (["+","-","*","/"].includes(e.key)) { e.preventDefault(); agregarOperador(e.key); }
+    if (["+","-","*","/"].includes(e.key)) {
+        e.preventDefault();
+        agregarOperador(e.key);
+    }
+
     if (e.key === ".") agregarPunto();
-    if (e.key === "Enter" || e.key === "=") { e.preventDefault(); calcular(); }
+    if (e.key === "Enter" || e.key === "=") {
+        e.preventDefault();
+        calcular();
+    }
+
     if (e.key === "Escape") limpiar();
     if (e.key === "Backspace") borrarUltimo();
 });
 
 cargarNombre();
+
+});
