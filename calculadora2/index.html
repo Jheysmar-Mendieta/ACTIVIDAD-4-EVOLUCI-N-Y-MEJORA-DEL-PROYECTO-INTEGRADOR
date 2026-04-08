@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Web</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Share+Tech+Mono&family=Exo+2:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/calculadora.css">
+</head>
+<body>
+
+<div class="mode-bar">
+    <span class="mode-label" id="mode-label">👔 Modo Adulto</span>
+    <label class="switch">
+        <input type="checkbox" id="mode-toggle">
+        <span class="slider"></span>
+    </label>
+    <span class="mode-label">🎮 Modo Infantil</span>
+</div>
+
+<div class="bienvenida" id="bienvenida"></div>
+
+<h1 id="titulo-app">Calculadora</h1>
+
+<div class="calculadora" id="calculadora">
+
+    <div class="pantalla">
+        <div id="expresion"></div>
+        <div id="resultado">0</div>
+    </div>
+
+    <div class="botones">
+        <button data-action="clear" class="btn-clear">C</button>
+        <button data-action="op" data-val="/">÷</button>
+        <button data-action="op" data-val="*">×</button>
+        <button data-action="delete" class="btn-del">⌫</button>
+
+        <button data-action="num" data-val="7">7</button>
+        <button data-action="num" data-val="8">8</button>
+        <button data-action="num" data-val="9">9</button>
+        <button data-action="op" data-val="+">+</button>
+
+        <button data-action="num" data-val="4">4</button>
+        <button data-action="num" data-val="5">5</button>
+        <button data-action="num" data-val="6">6</button>
+        <button data-action="op" data-val="-">−</button>
+
+        <button data-action="num" data-val="1">1</button>
+        <button data-action="num" data-val="2">2</button>
+        <button data-action="num" data-val="3">3</button>
+        <button data-action="equals">=</button>
+
+        <button data-action="num" data-val="0" class="btn-zero">0</button>
+        <button data-action="dot">.</button>
+    </div>
+
+    <div class="feedback" id="feedback"></div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+        <div class="modal-emoji">👋</div>
+        <h2>¡Hola! ¿Cómo te llamás?</h2>
+        <input type="text" id="input-nombre" placeholder="Tu nombre..." maxlength="20">
+        <button id="btn-guardar-nombre">Guardar</button>
+    </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

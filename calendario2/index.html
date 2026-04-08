@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Exo+2:wght@400;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="mode-bar">
+    <span class="mode-label">👔 Adulto</span>
+    <label class="switch">
+        <input type="checkbox" id="mode-toggle">
+        <span class="slider"></span>
+    </label>
+    <span class="mode-label">🎨 Infantil</span>
+</div>
+
+<div class="bienvenida" id="bienvenida"></div>
+
+<h1 class="title" id="titulo-app">📅 Calendario</h1>
+
+<div class="calendar" id="calendar">
+
+    <div class="calendar__info">
+        <div class="calendar__prev" id="prev-month">&#9664;</div>
+        <div class="calendar__center">
+            <div class="calendar__month" id="month"></div>
+            <div class="calendar__year" id="year"></div>
+        </div>
+        <div class="calendar__next" id="next-month">&#9654;</div>
+    </div>
+
+    <div class="calendar-week">
+        <div>Lun</div><div>Mar</div><div>Mié</div>
+        <div>Jue</div><div>Vie</div><div>Sáb</div><div>Dom</div>
+    </div>
+
+    <div class="calendar-days" id="days"></div>
+
+    <div class="leyenda">
+        <span class="ley-item"><span class="dot dot-hoy"></span> Hoy</span>
+        <span class="ley-item"><span class="dot dot-feriado"></span> Feriado</span>
+        <span class="ley-item"><span class="dot dot-nota"></span> Nota</span>
+    </div>
+</div>
+
+<div class="panel-nota" id="panel-nota">
+    <div class="nota-header">
+        <span id="nota-fecha-titulo"></span>
+        <button class="btn-cerrar" id="btn-cerrar-nota">✕</button>
+    </div>
+    <textarea id="nota-texto" placeholder="Escribí una nota para este día..."></textarea>
+    <div class="nota-acciones">
+        <button class="btn-guardar-nota" id="btn-guardar-nota">💾 Guardar</button>
+        <button class="btn-borrar-nota" id="btn-borrar-nota">🗑 Borrar</button>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+        <div class="modal-emoji">📅</div>
+        <h2>¡Hola! ¿Cómo te llamás?</h2>
+        <input type="text" id="input-nombre" placeholder="Tu nombre..." maxlength="20">
+        <button id="btn-guardar-nombre">Comenzar</button>
+    </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
